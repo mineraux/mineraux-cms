@@ -1,0 +1,46 @@
+const { buildSchema } = require('graphql')
+
+module.exports = buildSchema(`
+  type User {
+    _id: ID!
+    name: String!
+  }
+
+  enum fieldType {
+    TITRE
+    LINK
+  }
+
+  type Field {
+    _id: ID!
+    type: fieldType!
+    order: Int!
+  }
+  
+  input UserInput {
+    name: String!
+  }
+
+  input FieldInput {
+    type: fieldType!
+    order: Int!
+  }
+
+  type RootQuery {
+    userList: [User!]!
+    singleUser(installationId: ID!): User!
+    FieldList: [Field!]!
+  }
+
+  type RootMutation {
+    createUser(userInput: UserInput): User
+    deleteUser(userID: ID!): User!
+    createField(fieldInput: FieldInput): Field
+    deleteField(fieldID: ID!): Field!
+  }
+
+  schema {
+    query: RootQuery
+    mutation: RootMutation
+  }
+`)

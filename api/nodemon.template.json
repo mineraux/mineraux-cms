@@ -1,0 +1,10 @@
+{
+  "env": {
+    "MONGO_USER": "",
+    "MONGO_PASSWORD": "",
+    "MONGO_DB": "",
+    "MONGO_CLUSTER": "",
+    "PORT": 4000,
+    "HTTPS": "true"
+  }
+}
