@@ -1,0 +1,22 @@
+schema:
+  - "https://localhost:4000/api"
+documents:
+  - "./src/**/*.graphql"
+overwrite: true
+config: {}
+generates:
+  ./src/fragmentTypes.json:
+    plugins:
+      - fragment-matcher
+  ./src/graphql/components.tsx:
+    config:
+      immutableTypes: true
+      withHooks: true
+      avoidOptionals: true
+      noNamespaces: true
+    plugins:
+      - add: '/* eslint-disable */'
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+require: []
