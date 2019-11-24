@@ -1,10 +1,10 @@
 import React, { FunctionComponent, Fragment } from 'react'
 import styled from 'styled-components'
 import { green, white } from 'styles/color'
-import profilPicture from '../assets/images/profil_picture.jpg'
+import profilPicture from '../../assets/images/profil_picture.jpg'
 import { marginApp } from 'styles/layout'
 import { Link } from 'react-router-dom'
-import config from '../config/config'
+import config from '../../config/config'
 
 const SideBarInner = styled.div`
   height: 100vh;

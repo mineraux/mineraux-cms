@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import MyPages from 'pages/MyPages';
-import SideBar from 'components/Sidebar';
+import SideBar from 'components/Sidebar/Sidebar';
 import styled from 'styled-components';
 import { marginApp } from 'styles/layout';
 
