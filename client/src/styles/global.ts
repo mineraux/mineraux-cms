@@ -1,6 +1,6 @@
 import './reset.css'
 import { createGlobalStyle } from "styled-components"
-import { black, green } from './color'
+import { black } from './color'
 
 export default createGlobalStyle`
   * {

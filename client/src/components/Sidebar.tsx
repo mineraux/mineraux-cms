@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, Fragment } from 'react'
 import styled from 'styled-components'
 import { green, white } from 'styles/color'
 import profilPicture from '../assets/images/profil_picture.jpg'
 import { marginApp } from 'styles/layout'
+import { Link } from 'react-router-dom'
+import config from '../config/config'
 
 const SideBarInner = styled.div`
   height: 100vh;
@@ -40,17 +42,20 @@ const SideBarInner = styled.div`
     }
   }
 `
-const SideBar: FunctionComponent = () => {
 
+const SideBar: FunctionComponent = () => {
   return (
     <SideBarInner>
       <header>
         <img src={profilPicture} alt="" className="profil-picture"/>
         <nav>
-          <span className="active">My pages</span>
-          <span>Settings</span>
-          <span>My team</span>
-          <span>My profil</span>
+          {Object.values(config.routes).map(link => {
+            return (
+              <Fragment key={link.path}>
+                <Link to={link.path}>{link.name}</Link>
+              </Fragment>
+            )
+          })}
         </nav>
       </header>
     </SideBarInner>
@@ -58,3 +63,4 @@ const SideBar: FunctionComponent = () => {
 }
 
 export default SideBar
+
