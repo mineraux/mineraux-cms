@@ -6,7 +6,7 @@ A website made with **React** (with _hooks_), **ApolloClient** and **Typescript*
 Special thanks to Omar Jbara and its [awesome react typescript apollo starter](https://github.com/Liinkiing/react-typescript-apollo-starter) !
 
 ## Code quality
-I want to make this project as clean as possible with **unit tests**, **prehook commit**, **documentation** etc.
+I want to make this project as clean as possible with **unit tests**, **prehook commit**, **documentation**, **good accessibility** etc.
 
 ## Learning Apollo and unit testing
 This is most of all a lab to learn Apollo, Jest, Typescript generic types, new Typescript features such as optional chaining.
