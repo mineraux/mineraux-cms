@@ -7,12 +7,19 @@ const graphqlHttp = require('express-graphql')
 const mongoose = require('mongoose')
 const graphQLSchema = require('./graphql/schema/index.graphql')
 const graphQLResolvers = require('./graphql/resolvers/index')
+const cors = require('cors')
 
 const app = express()
 
 app.use(bodyParser.json())
 
-app.use('/graphql',
+const apiPath = "/api"
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
+app.use(cors());
+
+app.use(apiPath,
   graphqlHttp({
     schema: graphQLSchema,
     rootValue: graphQLResolvers,
@@ -39,7 +46,7 @@ https.createServer({
   cert: fs.readFileSync('server.cert')
 }, app).listen(PORT, () => {
   console.log('🚀 🔒 HTTPS 🔒 : Listening on port : ' + PORT)
-  console.log('Check: https://localhost:' + PORT + '/graphql')
+  console.log('Check: https://localhost:' + PORT + apiPath)
 });
 
 app.use((req, res, next) => {
