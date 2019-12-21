@@ -1,9 +1,9 @@
 import React, { FunctionComponent, Fragment } from 'react'
 import styled from 'styled-components'
+import { Link, useLocation } from 'react-router-dom'
+import config from '../../config/config'
 import { green, white } from 'styles/color'
 import profilPicture from '../../assets/images/profil_picture.jpg'
-import { Link } from 'react-router-dom'
-import config from '../../config/config'
 
 const HeaderInner = styled.header`
   padding: 15px 30px ;
@@ -48,13 +48,15 @@ const HeaderInner = styled.header`
 `
 
 const Header: FunctionComponent = () => {
+  let location = useLocation()
+
   return (
     <HeaderInner>
         <nav>
           {Object.values(config.routes).map(link => {
             return (
               <Fragment key={link.path}>
-                <Link to={link.path} className="active">{link.name}</Link>
+                <Link to={link.path} className={location.pathname === link.path ? 'active' : ''}>{link.name}</Link>
               </Fragment>
             )
           })}
