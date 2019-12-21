@@ -9,12 +9,14 @@ module.exports = buildSchema(`
   enum fieldType {
     TITRE
     LINK
+    TEXT
   }
 
   type Field {
     _id: ID!
     type: fieldType!
     order: Int!
+    content: String!
   }
   
   input UserInput {
@@ -24,6 +26,7 @@ module.exports = buildSchema(`
   input FieldInput {
     type: fieldType!
     order: Int!
+    content: String!
   }
 
   type RootQuery {

@@ -1,32 +1,5 @@
 const Field = require('../../models/field')
-const User = require('../../models/user')
 
-const user = async userId => {
-  try {
-    const user = await User.findById(userId)
-    return {
-      ...user._doc,
-      _id: user.id,
-      name: user.name
-    }
-  } catch (err) {
-    throw err
-  }
-}
-
-const field = async fieldId => {
-  try {
-    const field = await Field.findById(fieldId)
-    return {
-      ...field._doc,
-      _id: field.id,
-      type: field.type,
-      order: field.order
-    }
-  } catch (err) {
-    throw err
-  }
-}
 module.exports = {
 
   fieldList: async () => {
@@ -37,7 +10,8 @@ module.exports = {
           ...field._doc,
           _id: field.id,
           type: field.type,
-          order: field.order
+          order: field.order,
+          content: field.content
         }
       })
     } catch (err) {
@@ -47,7 +21,8 @@ module.exports = {
   createField: async args => {
     const field = new Field({
       type: args.fieldInput.type,
-      order: args.fieldInput.order
+      order: args.fieldInput.order,
+      content: args.fieldInput.content
     })
 
     let createdField
@@ -58,7 +33,8 @@ module.exports = {
         ...result._doc,
         _id: result._doc._id.toString(),
         type: args.fieldInput.type,
-        order: args.fieldInput.order
+        order: args.fieldInput.order,
+        content: args.fieldInput.content
       }
 
       return createdField
