@@ -32,7 +32,7 @@ module.exports = buildSchema(`
   type RootQuery {
     userList: [User!]!
     singleUser(installationId: ID!): User!
-    FieldList: [Field!]!
+    fieldList: [Field!]!
   }
 
   type RootMutation {

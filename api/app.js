@@ -15,8 +15,6 @@ app.use(bodyParser.json())
 
 const apiPath = "/api"
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
-
 app.use(cors());
 
 app.use(apiPath,

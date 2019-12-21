@@ -9,6 +9,10 @@ const fieldSchema = new Schema({
   order: {
     type: Number,
     required: true
+  },
+  content: {
+    type: String,
+    required: true
   }
 })
 

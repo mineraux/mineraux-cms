@@ -1,33 +1,6 @@
 const User = require('../../models/user')
 const Field = require('../../models/field')
 
-const user = async userId => {
-  try {
-    const user = await User.findById(userId)
-    return {
-      ...user._doc,
-      _id: user.id,
-      name: user.name
-    }
-  } catch (err) {
-    throw err
-  }
-}
-
-const field = async fieldId => {
-  try {
-    const field = await Field.findById(fieldId)
-    return {
-      ...field._doc,
-      _id: field.id,
-      type: field.type,
-      order: field.order
-    }
-  } catch (err) {
-    throw err
-  }
-}
-
 module.exports = {
   userList: async () => {
     try {
