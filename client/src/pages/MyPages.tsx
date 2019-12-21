@@ -1,7 +1,32 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, Suspense } from 'react'
 import Button from 'components/Button'
 import Table from 'components/Table'
 import styled from 'styled-components'
+import { useFieldListQueryQuery, Field,  } from 'graphql/components'
+import { uniq, flatten, initial, pipe } from 'lodash/fp'
+
+const TableFields: FunctionComponent = () => {
+  const { data, error } = useFieldListQueryQuery()
+
+  if (error) {
+    return <div>Something went wrong loading your fields.</div>
+  }
+
+  if (data) {
+    const tableHeaderData = pipe(
+      (fieldList: ReadonlyArray<Field>) => fieldList.map(field => Object.keys(field)),
+      flatten,
+      uniq,
+      initial
+    )(data.fieldList)
+
+    const tableBodyData = data.fieldList.map(field => initial(Object.values(field) as string[]))
+
+    return <Table rowHeader={tableHeaderData} rowList={tableBodyData} />
+  }
+
+  return null
+}
 
 const MyPages: FunctionComponent = () => {
   const InnerMyPages = styled.div `
@@ -12,16 +37,13 @@ const MyPages: FunctionComponent = () => {
       margin-left: 25px;
     }
   `
-  const tableHeaderData = ["order", "type", "value", "id"]
-  const tableBodyData = [
-    ["1", "titre", "Welcome on my blog", "#12"],
-    ["2", "link", "facebook", "#15"],
-    ["3", "text", "this start with a pretty long text that should be truncated", "#30"]
-  ]
+
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Table rowHeader={tableHeaderData} rowList={tableBodyData} />
+      <Suspense fallback={<div>Your fields are loading...</div>}>
+        <TableFields />
+      </Suspense>
       <Button/>
     </InnerMyPages>
   )
