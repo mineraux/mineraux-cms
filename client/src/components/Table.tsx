@@ -15,6 +15,12 @@ const TableInner = styled.div `
     &:nth-of-type(2n) {
       background-color: ${lightPink};
     }
+
+    .table-cell {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 `
 
@@ -29,12 +35,12 @@ const Table: FunctionComponent<TableProps> = ({rowHeader, rowList}) => {
   return (
     <TableInner className="table">
       <div className="table-header table-row">
-        {rowHeader.map((headerItem, index) => <span key={`header-table-${index}`}>{headerItem}</span>)}
+        {rowHeader.map((headerItem, index) => <span key={`header-table-${index}`} className="table-cell">{headerItem}</span>)}
       </div>
       {rowList.map((row, rowIndex) => {
         return (
           <div className="table-row" key={`row_${rowIndex}`}>
-            {row.map((value, valueIndex) => <span key={`row_${rowIndex}-value_${valueIndex}`}>{value}</span>)}
+            {row.map((value, valueIndex) => <span key={`row_${rowIndex}-value_${valueIndex}`} className="table-cell">{value}</span>)}
           </div>
         )
       })}

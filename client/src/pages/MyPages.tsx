@@ -16,7 +16,7 @@ const MyPages: FunctionComponent = () => {
   const tableBodyData = [
     ["1", "titre", "Welcome on my blog", "#12"],
     ["2", "link", "facebook", "#15"],
-    ["3", "text", "this start with ...", "#30"]
+    ["3", "text", "this start with a pretty long text that should be truncated", "#30"]
   ]
   return (
     <InnerMyPages>
