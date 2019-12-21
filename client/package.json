@@ -14,6 +14,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
     "@types/graphql": "^14.2.3",
+    "@types/lodash": "^4.14.149",
     "@types/node": "12.7.2",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
@@ -24,6 +25,7 @@
     "concurrently": "^5.0.0",
     "cross-env": "^5.2.0",
     "graphql": "^14.5.0",
+    "lodash": "^4.17.15",
     "polished": "^3.4.1",
     "react": "^16.9.0",
     "react-apollo": "^3.0.1",
@@ -33,7 +35,7 @@
     "react-scripts": "^3.2.0",
     "styled-components": "^4.3.2",
     "ts-optchain": "^0.1.8",
-    "typescript": "3.5.3"
+    "typescript": "3.7.2"
   },
   "scripts": {
     "gql-gen": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 gql-gen",
@@ -65,9 +67,9 @@
     "@graphql-codegen/typescript": "^1.6.1",
     "@graphql-codegen/typescript-operations": "^1.6.1",
     "@graphql-codegen/typescript-react-apollo": "^1.6.1",
-    "@types/jest": "^24.0.23",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.23",
     "@types/react-test-renderer": "^16.9.1",
     "@types/styled-components": "^4.1.18",
     "babel-plugin-styled-components": "^1.10.6",
