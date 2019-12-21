@@ -27,8 +27,7 @@ const HeaderInner = styled.header`
       font-weight: 500;
       position: relative;
 
-      &.active {
-        &:before {
+      &:before {
           position: absolute;
           left: 0;
           bottom: -3px;
@@ -36,8 +35,15 @@ const HeaderInner = styled.header`
           background-color: ${green};
           width : 100%;
           height: 1px;
+          transform: scaleX(0);
+          transition: transform ease .3s;
+          transform-origin: left;
         }
-        
+
+      &.active, &:hover {
+        &:before {
+          transform: scaleX(1);
+        }
       }
 
       &:not(:last-of-type){
