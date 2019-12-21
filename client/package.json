@@ -39,7 +39,7 @@
     "gql-gen": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 gql-gen",
     "prestart": "yarn gql-gen",
     "start": "react-scripts start",
-    "dev": "concurrently  \"react-scripts start\" \"yarn gql-gen --watch\" ",
+    "dev": "concurrently  \"HTTPS=true react-scripts start\" \"yarn gql-gen --watch\" ",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
