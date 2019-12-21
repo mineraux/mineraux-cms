@@ -3,22 +3,10 @@ import styled from 'styled-components'
 import { white, lightPink } from 'styles/color'
 
 const TableInner = styled.div `
-  width: 100%;
   padding: 15px 25px;
   background-color: ${white};
-  /* display: grid;
-  grid-template-areas:
-    "table_header";
-  grid-template-rows: 1fr 1fr 1fr 1fr; */
-
-  .table-header {
-    /* grid-area: table_header; */
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; */
-  }
 
   .table-row {
-    /* grid-area: table_row; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 10px 15px;

@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import Router from 'config/Router'
 
 const AppInner = styled.div`
-  display:flex;
   max-width: 100%;
   background-color: ${lightPink};
 `

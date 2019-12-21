@@ -2,20 +2,19 @@ import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import MyPages from 'pages/MyPages';
-import SideBar from 'components/Sidebar/Sidebar';
+import Header from 'components/Header/Header';
 import styled from 'styled-components';
 import { marginApp } from 'styles/layout';
 
 const Router: FunctionComponent = () => {
 
   const RouterInner = styled.main `
-    width: 100%;
     padding: ${marginApp.vertical} ${marginApp.horizontal};
   `
 
   return (
     <>
-      <SideBar />
+      <Header />
       <Switch>
         <RouterInner>
           <Route exact path="/" component={Home} />
