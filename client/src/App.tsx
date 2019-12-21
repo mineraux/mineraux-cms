@@ -7,6 +7,7 @@ import Router from 'config/Router'
 
 const AppInner = styled.div`
   max-width: 100%;
+  min-height: 100vh;
   background-color: ${lightPink};
 `
 

@@ -14,8 +14,8 @@ const HeaderInner = styled.header`
   justify-content: space-between;
 
   .profil-picture {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
   }
 
