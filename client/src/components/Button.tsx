@@ -9,6 +9,10 @@ const InnerButton = styled.button `
   line-height: 24px;
   border-radius: 5px;
   padding: 6px 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 

@@ -12,10 +12,16 @@ const MyPages: FunctionComponent = () => {
       margin-left: 25px;
     }
   `
+  const tableHeaderData = ["order", "type", "value", "id"]
+  const tableBodyData = [
+    ["1", "titre", "Welcome on my blog", "#12"],
+    ["2", "link", "facebook", "#15"],
+    ["3", "text", "this start with ...", "#30"]
+  ]
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Table/>
+      <Table rowHeader={tableHeaderData} rowList={tableBodyData} />
       <Button/>
     </InnerMyPages>
   )

@@ -18,33 +18,26 @@ const TableInner = styled.div `
   }
 `
 
-const Table: FunctionComponent = () => {
+type Row = string[]
+
+type TableProps = {
+  rowHeader: Row
+  rowList: Row[]
+}
+
+const Table: FunctionComponent<TableProps> = ({rowHeader, rowList}) => {
   return (
     <TableInner className="table">
       <div className="table-header table-row">
-        <span>order</span>
-        <span>type</span>
-        <span>value</span>
-        <span>id</span>
+        {rowHeader.map((headerItem, index) => <span key={`header-table-${index}`}>{headerItem}</span>)}
       </div>
-      <div className="table-row">
-        <span>1</span>
-        <span>titre</span>
-        <span>Welcome on my blog</span>
-        <span>#12</span>
-      </div>
-      <div className="table-row">
-        <span>2</span>
-        <span>link</span>
-        <span>facebook</span>
-        <span>#15</span>
-      </div>
-      <div className="table-row">
-        <span>3</span>
-        <span>text</span>
-        <span>this start with ...</span>
-        <span>#30</span>
-      </div>
+      {rowList.map((row, rowIndex) => {
+        return (
+          <div className="table-row" key={`row_${rowIndex}`}>
+            {row.map((value, valueIndex) => <span key={`row_${rowIndex}-value_${valueIndex}`}>{value}</span>)}
+          </div>
+        )
+      })}
     </TableInner>
   )
 }
