@@ -17,6 +17,8 @@ module.exports = {
   createField: async (args) => {
     const field = new Field({
       type: args.fieldInput.type,
+      order: args.fieldInput.order,
+      value: args.fieldInput.value,
       linkedPage: args.fieldInput.linkedPageId
     })
 

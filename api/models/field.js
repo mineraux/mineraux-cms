@@ -6,6 +6,14 @@ const fieldSchema = new Schema({
     type: String,
     required: true
   },
+  order: {
+    type: Number,
+    required: true
+  },
+  value: {
+    type: String,
+    required: true
+  },
   linkedPage: {
     type: Schema.Types.ObjectId,
     ref: 'Page',
