@@ -2,11 +2,11 @@ import React, { FunctionComponent, Suspense } from 'react'
 import Button from 'components/Button'
 import Table from 'components/Table'
 import styled from 'styled-components'
-import { useFieldListQueryQuery, Field,  } from 'graphql/components'
+import { useFieldListQuery, Field } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
 
 const TableFields: FunctionComponent = () => {
-  const { data, error } = useFieldListQueryQuery()
+  const { data, error } = useFieldListQuery()
 
   if (error) {
     return <div>Something went wrong loading your fields.</div>

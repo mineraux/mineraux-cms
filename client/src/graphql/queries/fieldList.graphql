@@ -1,4 +1,4 @@
-query FieldListQuery {
+query FieldList {
 	fieldList {
     order
   	type

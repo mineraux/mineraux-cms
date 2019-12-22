@@ -87,10 +87,10 @@ export type UserInput = {
   readonly name: Scalars['String'],
 };
 
-export type FieldListQueryQueryVariables = {};
+export type FieldListQueryVariables = {};
 
 
-export type FieldListQueryQuery = (
+export type FieldListQuery = (
   { readonly __typename?: 'RootQuery' }
   & { readonly fieldList: ReadonlyArray<(
     { readonly __typename?: 'Field' }
@@ -99,8 +99,8 @@ export type FieldListQueryQuery = (
 );
 
 
-export const FieldListQueryDocument = gql`
-    query FieldListQuery {
+export const FieldListDocument = gql`
+    query FieldList {
   fieldList {
     order
     type
@@ -109,45 +109,45 @@ export const FieldListQueryDocument = gql`
   }
 }
     `;
-export type FieldListQueryComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<FieldListQueryQuery, FieldListQueryQueryVariables>, 'query'>;
+export type FieldListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<FieldListQuery, FieldListQueryVariables>, 'query'>;
 
-    export const FieldListQueryComponent = (props: FieldListQueryComponentProps) => (
-      <ApolloReactComponents.Query<FieldListQueryQuery, FieldListQueryQueryVariables> query={FieldListQueryDocument} {...props} />
+    export const FieldListComponent = (props: FieldListComponentProps) => (
+      <ApolloReactComponents.Query<FieldListQuery, FieldListQueryVariables> query={FieldListDocument} {...props} />
     );
     
-export type FieldListQueryProps<TChildProps = {}> = ApolloReactHoc.DataProps<FieldListQueryQuery, FieldListQueryQueryVariables> & TChildProps;
-export function withFieldListQuery<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+export type FieldListProps<TChildProps = {}> = ApolloReactHoc.DataProps<FieldListQuery, FieldListQueryVariables> & TChildProps;
+export function withFieldList<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  FieldListQueryQuery,
-  FieldListQueryQueryVariables,
-  FieldListQueryProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, FieldListQueryQuery, FieldListQueryQueryVariables, FieldListQueryProps<TChildProps>>(FieldListQueryDocument, {
-      alias: 'fieldListQuery',
+  FieldListQuery,
+  FieldListQueryVariables,
+  FieldListProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, FieldListQuery, FieldListQueryVariables, FieldListProps<TChildProps>>(FieldListDocument, {
+      alias: 'fieldList',
       ...operationOptions
     });
 };
 
 /**
- * __useFieldListQueryQuery__
+ * __useFieldListQuery__
  *
- * To run a query within a React component, call `useFieldListQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useFieldListQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useFieldListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFieldListQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFieldListQueryQuery({
+ * const { data, loading, error } = useFieldListQuery({
  *   variables: {
  *   },
  * });
  */
-export function useFieldListQueryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FieldListQueryQuery, FieldListQueryQueryVariables>) {
-        return ApolloReactHooks.useQuery<FieldListQueryQuery, FieldListQueryQueryVariables>(FieldListQueryDocument, baseOptions);
+export function useFieldListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FieldListQuery, FieldListQueryVariables>) {
+        return ApolloReactHooks.useQuery<FieldListQuery, FieldListQueryVariables>(FieldListDocument, baseOptions);
       }
-export function useFieldListQueryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FieldListQueryQuery, FieldListQueryQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<FieldListQueryQuery, FieldListQueryQueryVariables>(FieldListQueryDocument, baseOptions);
+export function useFieldListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FieldListQuery, FieldListQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<FieldListQuery, FieldListQueryVariables>(FieldListDocument, baseOptions);
         }
-export type FieldListQueryQueryHookResult = ReturnType<typeof useFieldListQueryQuery>;
-export type FieldListQueryLazyQueryHookResult = ReturnType<typeof useFieldListQueryLazyQuery>;
-export type FieldListQueryQueryResult = ApolloReactCommon.QueryResult<FieldListQueryQuery, FieldListQueryQueryVariables>;
+export type FieldListQueryHookResult = ReturnType<typeof useFieldListQuery>;
+export type FieldListLazyQueryHookResult = ReturnType<typeof useFieldListLazyQuery>;
+export type FieldListQueryResult = ApolloReactCommon.QueryResult<FieldListQuery, FieldListQueryVariables>;
