@@ -33,8 +33,8 @@ enum fieldType {
   }
 
   type RootQuery {
-    fieldList: [Field!]!
-    pageList: [Page!]!
+    fields: [Field!]!
+    pages: [Page!]!
   }
 
   type RootMutation {

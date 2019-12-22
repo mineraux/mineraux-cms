@@ -28,7 +28,7 @@ const fields = async fieldIds => {
   }
 }
 
-const singleField = async fieldId => {
+const field = async fieldId => {
   try {
     const field = await fieldLoader.load(fieldId.toString())
     return field
@@ -66,7 +66,7 @@ const transformPage = page => {
     ...page._doc,
     _id: page.id,
     title: page.title,
-    linkedFields: singleField.bind(this, page.linkedFields)
+    linkedFields: fields.bind(this, page.linkedFields)
   }
 }
 
