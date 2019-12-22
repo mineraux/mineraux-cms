@@ -1,4 +1,4 @@
 export const marginApp = {
-  vertical: "30px",
+  vertical: "50px",
   horizontal: "30px",
 }

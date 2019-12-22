@@ -10,6 +10,9 @@ const Router: FunctionComponent = () => {
 
   const RouterInner = styled.main `
     padding: ${marginApp.vertical} ${marginApp.horizontal};
+    max-width: 840px;
+    min-width: 300px;
+    margin: auto;
   `
 
   return (

@@ -11,7 +11,7 @@ const TableInner = styled.div `
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 10px 15px;
     border-radius: 5px;
-    
+
     &:nth-of-type(2n) {
       background-color: ${lightPink};
     }

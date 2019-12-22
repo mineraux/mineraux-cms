@@ -9,46 +9,52 @@ const HeaderInner = styled.header`
   padding: 15px 30px ;
   box-shadow: 0 5px 15px 0 rgba(90,50,40,.15), 0 4px 8px 0 rgba(80,40,30,.1);
   background-color: ${white};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  .profil-picture {
-    max-width: 40px;
-    max-height: 40px;
-    border-radius: 50%;
-  }
-
-  nav {
+  .header-wrapper {
+    max-width: 840px;
+    min-width: 300px;
+    margin: auto;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    a {
-      font-size: 14px;
-      font-weight: 500;
-      position: relative;
+    nav {
+      display: flex;
 
-      &:before {
-          position: absolute;
-          left: 0;
-          bottom: -3px;
-          content: '';
-          background-color: ${green};
-          width : 100%;
-          height: 1px;
-          transform: scaleX(0);
-          transition: transform ease .3s;
-          transform-origin: left;
-        }
+      a {
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
 
-      &.active, &:hover {
         &:before {
-          transform: scaleX(1);
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            content: '';
+            background-color: ${green};
+            width : 100%;
+            height: 1px;
+            transform: scaleX(0);
+            transition: transform ease .3s;
+            transform-origin: left;
+          }
+
+        &.active, &:hover {
+          &:before {
+            transform: scaleX(1);
+          }
+        }
+
+        &:not(:last-of-type){
+          margin-right: 30px;
         }
       }
+    }
 
-      &:not(:last-of-type){
-        margin-right: 30px;
-      }
+    .profil-picture {
+      max-width: 40px;
+      max-height: 40px;
+      border-radius: 50%;
     }
   }
 `
@@ -58,6 +64,7 @@ const Header: FunctionComponent = () => {
 
   return (
     <HeaderInner>
+      <div className="header-wrapper">
         <nav>
           {Object.values(config.routes).map(link => {
             return (
@@ -68,6 +75,7 @@ const Header: FunctionComponent = () => {
           })}
         </nav>
         <img src={profilPicture} alt="" className="profil-picture"/>
+      </div>
     </HeaderInner>
   )
 }

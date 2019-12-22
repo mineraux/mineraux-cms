@@ -32,9 +32,9 @@ export type FieldInput = {
 };
 
 export enum FieldType {
-  Titre = 'TITRE',
-  Link = 'LINK',
-  Text = 'TEXT'
+  Titre = 'titre',
+  Link = 'link',
+  Text = 'text'
 }
 
 export type RootMutation = {
