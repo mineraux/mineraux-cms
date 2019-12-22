@@ -7,8 +7,8 @@ const pageSchema = new Schema({
     required: true
   },
   fieldList: {
-    type: Schema.Types.Mixed,
-    required: true
+    type: [Schema.Types.ObjectId],
+    ref: 'Field',
   }
 })
 

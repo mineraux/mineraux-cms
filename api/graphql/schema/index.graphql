@@ -17,18 +17,13 @@ enum fieldType {
     type: fieldType!
     order: Int!
     content: String!
-  }
-
-  input FieldInputType {
-    type: fieldType!
-    order: Int!
-    content: String!
+    pageID: ID!
   }
 
   type Page {
     _id: ID!
     title: String!
-    fieldList: [Field!]!
+    fieldList: [Field!]
   }
 
   input UserInput {
@@ -36,6 +31,7 @@ enum fieldType {
   }
 
   input FieldInput {
+    pageID: ID!
     type: fieldType!
     order: Int!
     content: String!
@@ -43,7 +39,6 @@ enum fieldType {
 
   input PageInput {
     title: String!
-    fieldList: [FieldInputType!]!
   }
 
   type RootQuery {
