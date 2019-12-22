@@ -7,9 +7,9 @@ module.exports = buildSchema(`
   }
 
   enum fieldType {
-    TITRE
-    LINK
-    TEXT
+    titre
+    link
+    text
   }
 
   type Field {
@@ -18,7 +18,7 @@ module.exports = buildSchema(`
     order: Int!
     content: String!
   }
-  
+
   input UserInput {
     name: String!
   }
