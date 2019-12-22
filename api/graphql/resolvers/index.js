@@ -1,11 +1,11 @@
 const userListResolver = require('./userList')
-const fieldListResolver = require('./fieldList')
-const pageListResolver = require('./pageList')
+const fieldsResolver = require('./fields')
+const pagesResolver = require('./pages')
 
 const RootResolver = {
   ...userListResolver,
-  ...fieldListResolver,
-  ...pageListResolver
+  ...fieldsResolver,
+  ...pagesResolver
 }
 
 module.exports = RootResolver

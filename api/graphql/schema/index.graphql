@@ -7,23 +7,16 @@ enum fieldType {
     text
   }
 
-  type User {
-    _id: ID!
-    name: String!
-  }
-
   type Field {
     _id: ID!
     type: fieldType!
-    order: Int!
-    content: String!
-    pageID: ID!
+    linkedPage: Page
   }
 
   type Page {
     _id: ID!
     title: String!
-    fieldList: [Field!]
+    linkedFields: [Field!]
   }
 
   input UserInput {
@@ -31,10 +24,8 @@ enum fieldType {
   }
 
   input FieldInput {
-    pageID: ID!
     type: fieldType!
-    order: Int!
-    content: String!
+    linkedPageId: ID!
   }
 
   input PageInput {
@@ -42,17 +33,12 @@ enum fieldType {
   }
 
   type RootQuery {
-    userList: [User!]!
-    singleUser(installationId: ID!): User!
     fieldList: [Field!]!
     pageList: [Page!]!
   }
 
   type RootMutation {
-    createUser(userInput: UserInput): User
-    deleteUser(userID: ID!): User!
     createField(fieldInput: FieldInput): Field
-    deleteField(fieldID: ID!): Field!
     createPage(pageInput: PageInput): Page
   }
 

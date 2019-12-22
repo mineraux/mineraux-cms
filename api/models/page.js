@@ -6,7 +6,7 @@ const pageSchema = new Schema({
     type: String,
     required: true
   },
-  fieldList: {
+  linkedFields: {
     type: [Schema.Types.ObjectId],
     ref: 'Field',
   }
