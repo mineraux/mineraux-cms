@@ -1,15 +1,15 @@
 const { buildSchema } = require('graphql')
 
 module.exports = buildSchema(`
-  type User {
-    _id: ID!
-    name: String!
-  }
-
-  enum fieldType {
+enum fieldType {
     titre
     link
     text
+  }
+
+  type User {
+    _id: ID!
+    name: String!
   }
 
   type Field {
@@ -17,6 +17,18 @@ module.exports = buildSchema(`
     type: fieldType!
     order: Int!
     content: String!
+  }
+
+  input FieldInputType {
+    type: fieldType!
+    order: Int!
+    content: String!
+  }
+
+  type Page {
+    _id: ID!
+    title: String!
+    fieldList: [Field!]!
   }
 
   input UserInput {
@@ -29,10 +41,16 @@ module.exports = buildSchema(`
     content: String!
   }
 
+  input PageInput {
+    title: String!
+    fieldList: [FieldInputType!]!
+  }
+
   type RootQuery {
     userList: [User!]!
     singleUser(installationId: ID!): User!
     fieldList: [Field!]!
+    pageList: [Page!]!
   }
 
   type RootMutation {
@@ -40,6 +58,7 @@ module.exports = buildSchema(`
     deleteUser(userID: ID!): User!
     createField(fieldInput: FieldInput): Field
     deleteField(fieldID: ID!): Field!
+    createPage(pageInput: PageInput): Page
   }
 
   schema {
