@@ -38,6 +38,7 @@ enum fieldType {
   type RootQuery {
     fields: [Field!]!
     pages: [Page!]!
+    singlePage(pageId: ID!): Page!
   }
 
   type RootMutation {

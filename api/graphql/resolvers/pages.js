@@ -13,6 +13,14 @@ module.exports = {
       throw err
     }
   },
+  singlePage: async args => {
+    try {
+      const page = await Page.findById(args.pageId)
+      return transformPage(page)
+    } catch (err) {
+      throw err
+    }
+  },
   createPage: async (args) => {
     const page = new Page({
       title: args.pageInput.title
