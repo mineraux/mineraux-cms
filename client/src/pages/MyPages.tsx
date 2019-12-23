@@ -7,7 +7,7 @@ import { uniq, flatten, initial, pipe } from 'lodash/fp'
 
 const TablePages: FunctionComponent = () => {
   const { data, error } = usePagesNameQuery()
-  let history = useHistory()
+  const history = useHistory()
 
   if (error) {
     return <div>Something went wrong loading your fields.</div>
