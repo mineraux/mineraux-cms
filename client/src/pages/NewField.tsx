@@ -2,6 +2,8 @@ import React, { FunctionComponent, useState } from 'react'
 import { useCreateNewFieldMutation, FieldType, CreateNewFieldMutationVariables } from 'graphql/components'
 import { useLocation } from 'react-router-dom'
 
+const generateFieldTypeDom = (): JSX.Element[] => Object.values(FieldType).map((value, index) => <option key={index}>{value}</option>)
+
 const NewField: FunctionComponent = () => {
   const locationState = useLocation().state
 
@@ -26,8 +28,7 @@ const NewField: FunctionComponent = () => {
           setField({...field, type:e.target.value as FieldType})
         }}/>
         <datalist id="fieldTypes">
-          <option>text</option>
-          <option>link</option>
+          {generateFieldTypeDom()}
         </datalist>
 
         <span>Value</span>
