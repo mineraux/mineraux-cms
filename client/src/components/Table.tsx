@@ -24,9 +24,12 @@ const TableInner = styled.div `
   }
 `
 
-type Row = string[]
+export type Row = {
+  labels: string[]
+  onClick?: () => void
+}
 
-type TableProps = {
+export type TableProps = {
   rowHeader: Row
   rowList: Row[]
 }
@@ -35,12 +38,14 @@ const Table: FunctionComponent<TableProps> = ({rowHeader, rowList}) => {
   return (
     <TableInner className="table">
       <div className="table-header table-row">
-        {rowHeader.map((headerItem, index) => <span key={`header-table-${index}`} className="table-cell">{headerItem}</span>)}
+        {rowHeader.labels.map((headerItem, index) => <span key={`header-table-${index}`} className="table-cell">{headerItem}</span>)}
       </div>
       {rowList.map((row, rowIndex) => {
         return (
-          <div className="table-row" key={`row_${rowIndex}`}>
-            {row.map((value, valueIndex) => <span key={`row_${rowIndex}-value_${valueIndex}`} className="table-cell">{value}</span>)}
+          <div className="table-row" key={`row_${rowIndex}`} onClick={row.onClick}>
+            {row.labels.map((value, valueIndex) => {
+              return <span key={`row_${rowIndex}-value_${valueIndex}`} className="table-cell">{value}</span>
+            })}
           </div>
         )
       })}

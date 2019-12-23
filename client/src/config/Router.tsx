@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import MyPages from 'pages/MyPages';
+import Page from 'pages/Page';
 import Header from 'components/Header/Header';
 import styled from 'styled-components';
 import { marginApp } from 'styles/layout';
@@ -22,6 +23,7 @@ const Router: FunctionComponent = () => {
         <RouterInner>
           <Route exact path="/" component={Home} />
           <Route exact path="/myPages" component={MyPages} />
+          <Route exact path="/pages/:pageSlug" component={Page} />
         </RouterInner>
       </Switch>
     </>

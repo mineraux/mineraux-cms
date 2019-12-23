@@ -1,0 +1,23 @@
+query pagesName{
+  pages {
+    title
+    _id
+  }
+}
+
+query pageFields($pageId: ID!) {
+  singlePage(pageId: $pageId) {
+    linkedFields {
+      _id
+      type
+      order
+      value
+    }
+  }
+}
+
+query pageNameById($pageId: ID!) {
+  singlePage(pageId: $pageId) {
+    title
+  }
+}

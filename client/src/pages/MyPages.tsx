@@ -1,26 +1,35 @@
 import React, { FunctionComponent, Suspense } from 'react'
 import Button from 'components/Button'
-import Table from 'components/Table'
 import styled from 'styled-components'
-import { useFieldListQuery, Field } from 'graphql/components'
+import { Link, useHistory } from 'react-router-dom'
+import Table, { Row } from 'components/Table'
+import { usePagesNameQuery, Page } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
 
-const TableFields: FunctionComponent = () => {
-  const { data, error } = useFieldListQuery()
+const TablePages: FunctionComponent = () => {
+  const { data, error } = usePagesNameQuery()
+  let history = useHistory()
 
   if (error) {
     return <div>Something went wrong loading your fields.</div>
   }
 
   if (data) {
-    const tableHeaderData = pipe(
-      (fieldList: ReadonlyArray<Field>) => fieldList.map(field => Object.keys(field)),
-      flatten,
-      uniq,
-      initial
-    )(data.fieldList)
+    const tableBodyData: Row[] = data.pages.map(page => {
+      return {
+        onClick: () => history.push(`/pages/${page.title}`, {id:page._id}),
+        labels: initial(Object.values(page) as string[])
+      }
+    })
 
-    const tableBodyData = data.fieldList.map(field => initial(Object.values(field) as string[]))
+    const tableHeaderData: Row = {
+      labels: pipe(
+          (pageList: ReadonlyArray<Pick<Page, 'title' | '_id'>>) => pageList.map(page => Object.keys(page)),
+          flatten,
+          uniq,
+          initial
+        )(data.pages)
+    }
 
     return <Table rowHeader={tableHeaderData} rowList={tableBodyData} />
   }
@@ -41,8 +50,8 @@ const MyPages: FunctionComponent = () => {
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Suspense fallback={<div>Your fields are loading...</div>}>
-        <TableFields />
+      <Suspense fallback={<div>Your pages are loading...</div>}>
+        <TablePages />
       </Suspense>
       <Button/>
     </InnerMyPages>

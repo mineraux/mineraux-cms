@@ -1,8 +1,8 @@
 query FieldList {
-	fieldList {
-    order
-  	type
-    content
+  fields {
     _id
+    type
+    order
+    value
   }
 }

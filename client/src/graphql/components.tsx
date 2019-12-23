@@ -22,37 +22,37 @@ export type Field = {
   readonly _id: Scalars['ID'],
   readonly type: FieldType,
   readonly order: Scalars['Int'],
-  readonly content: Scalars['String'],
+  readonly value: Scalars['String'],
+  readonly linkedPage: Maybe<Page>,
 };
 
 export type FieldInput = {
   readonly type: FieldType,
   readonly order: Scalars['Int'],
-  readonly content: Scalars['String'],
+  readonly value: Scalars['String'],
+  readonly linkedPageId: Scalars['ID'],
 };
 
 export enum FieldType {
-  Titre = 'titre',
-  Link = 'link',
-  Text = 'text'
+  Text = 'text',
+  Link = 'link'
 }
+
+export type Page = {
+  readonly __typename?: 'Page',
+  readonly _id: Scalars['ID'],
+  readonly title: Scalars['String'],
+  readonly linkedFields: Maybe<ReadonlyArray<Field>>,
+};
+
+export type PageInput = {
+  readonly title: Scalars['String'],
+};
 
 export type RootMutation = {
   readonly __typename?: 'RootMutation',
-  readonly createUser: Maybe<User>,
-  readonly deleteUser: User,
   readonly createField: Maybe<Field>,
-  readonly deleteField: Field,
-};
-
-
-export type RootMutationCreateUserArgs = {
-  userInput: Maybe<UserInput>
-};
-
-
-export type RootMutationDeleteUserArgs = {
-  userID: Scalars['ID']
+  readonly createPage: Maybe<Page>,
 };
 
 
@@ -61,26 +61,20 @@ export type RootMutationCreateFieldArgs = {
 };
 
 
-export type RootMutationDeleteFieldArgs = {
-  fieldID: Scalars['ID']
+export type RootMutationCreatePageArgs = {
+  pageInput: Maybe<PageInput>
 };
 
 export type RootQuery = {
   readonly __typename?: 'RootQuery',
-  readonly userList: ReadonlyArray<User>,
-  readonly singleUser: User,
-  readonly fieldList: ReadonlyArray<Field>,
+  readonly fields: ReadonlyArray<Field>,
+  readonly pages: ReadonlyArray<Page>,
+  readonly singlePage: Page,
 };
 
 
-export type RootQuerySingleUserArgs = {
-  installationId: Scalars['ID']
-};
-
-export type User = {
-  readonly __typename?: 'User',
-  readonly _id: Scalars['ID'],
-  readonly name: Scalars['String'],
+export type RootQuerySinglePageArgs = {
+  pageId: Scalars['ID']
 };
 
 export type UserInput = {
@@ -92,20 +86,60 @@ export type FieldListQueryVariables = {};
 
 export type FieldListQuery = (
   { readonly __typename?: 'RootQuery' }
-  & { readonly fieldList: ReadonlyArray<(
+  & { readonly fields: ReadonlyArray<(
     { readonly __typename?: 'Field' }
-    & Pick<Field, 'order' | 'type' | 'content' | '_id'>
+    & Pick<Field, '_id' | 'type' | 'order' | 'value'>
   )> }
+);
+
+export type PagesNameQueryVariables = {};
+
+
+export type PagesNameQuery = (
+  { readonly __typename?: 'RootQuery' }
+  & { readonly pages: ReadonlyArray<(
+    { readonly __typename?: 'Page' }
+    & Pick<Page, 'title' | '_id'>
+  )> }
+);
+
+export type PageFieldsQueryVariables = {
+  pageId: Scalars['ID']
+};
+
+
+export type PageFieldsQuery = (
+  { readonly __typename?: 'RootQuery' }
+  & { readonly singlePage: (
+    { readonly __typename?: 'Page' }
+    & { readonly linkedFields: Maybe<ReadonlyArray<(
+      { readonly __typename?: 'Field' }
+      & Pick<Field, '_id' | 'type' | 'order' | 'value'>
+    )>> }
+  ) }
+);
+
+export type PageNameByIdQueryVariables = {
+  pageId: Scalars['ID']
+};
+
+
+export type PageNameByIdQuery = (
+  { readonly __typename?: 'RootQuery' }
+  & { readonly singlePage: (
+    { readonly __typename?: 'Page' }
+    & Pick<Page, 'title'>
+  ) }
 );
 
 
 export const FieldListDocument = gql`
     query FieldList {
-  fieldList {
-    order
-    type
-    content
+  fields {
     _id
+    type
+    order
+    value
   }
 }
     `;
@@ -151,3 +185,158 @@ export function useFieldListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHo
 export type FieldListQueryHookResult = ReturnType<typeof useFieldListQuery>;
 export type FieldListLazyQueryHookResult = ReturnType<typeof useFieldListLazyQuery>;
 export type FieldListQueryResult = ApolloReactCommon.QueryResult<FieldListQuery, FieldListQueryVariables>;
+export const PagesNameDocument = gql`
+    query pagesName {
+  pages {
+    title
+    _id
+  }
+}
+    `;
+export type PagesNameComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PagesNameQuery, PagesNameQueryVariables>, 'query'>;
+
+    export const PagesNameComponent = (props: PagesNameComponentProps) => (
+      <ApolloReactComponents.Query<PagesNameQuery, PagesNameQueryVariables> query={PagesNameDocument} {...props} />
+    );
+    
+export type PagesNameProps<TChildProps = {}> = ApolloReactHoc.DataProps<PagesNameQuery, PagesNameQueryVariables> & TChildProps;
+export function withPagesName<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  PagesNameQuery,
+  PagesNameQueryVariables,
+  PagesNameProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, PagesNameQuery, PagesNameQueryVariables, PagesNameProps<TChildProps>>(PagesNameDocument, {
+      alias: 'pagesName',
+      ...operationOptions
+    });
+};
+
+/**
+ * __usePagesNameQuery__
+ *
+ * To run a query within a React component, call `usePagesNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePagesNameQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePagesNameQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePagesNameQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PagesNameQuery, PagesNameQueryVariables>) {
+        return ApolloReactHooks.useQuery<PagesNameQuery, PagesNameQueryVariables>(PagesNameDocument, baseOptions);
+      }
+export function usePagesNameLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PagesNameQuery, PagesNameQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<PagesNameQuery, PagesNameQueryVariables>(PagesNameDocument, baseOptions);
+        }
+export type PagesNameQueryHookResult = ReturnType<typeof usePagesNameQuery>;
+export type PagesNameLazyQueryHookResult = ReturnType<typeof usePagesNameLazyQuery>;
+export type PagesNameQueryResult = ApolloReactCommon.QueryResult<PagesNameQuery, PagesNameQueryVariables>;
+export const PageFieldsDocument = gql`
+    query pageFields($pageId: ID!) {
+  singlePage(pageId: $pageId) {
+    linkedFields {
+      _id
+      type
+      order
+      value
+    }
+  }
+}
+    `;
+export type PageFieldsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PageFieldsQuery, PageFieldsQueryVariables>, 'query'> & ({ variables: PageFieldsQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const PageFieldsComponent = (props: PageFieldsComponentProps) => (
+      <ApolloReactComponents.Query<PageFieldsQuery, PageFieldsQueryVariables> query={PageFieldsDocument} {...props} />
+    );
+    
+export type PageFieldsProps<TChildProps = {}> = ApolloReactHoc.DataProps<PageFieldsQuery, PageFieldsQueryVariables> & TChildProps;
+export function withPageFields<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  PageFieldsQuery,
+  PageFieldsQueryVariables,
+  PageFieldsProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, PageFieldsQuery, PageFieldsQueryVariables, PageFieldsProps<TChildProps>>(PageFieldsDocument, {
+      alias: 'pageFields',
+      ...operationOptions
+    });
+};
+
+/**
+ * __usePageFieldsQuery__
+ *
+ * To run a query within a React component, call `usePageFieldsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageFieldsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageFieldsQuery({
+ *   variables: {
+ *      pageId: // value for 'pageId'
+ *   },
+ * });
+ */
+export function usePageFieldsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PageFieldsQuery, PageFieldsQueryVariables>) {
+        return ApolloReactHooks.useQuery<PageFieldsQuery, PageFieldsQueryVariables>(PageFieldsDocument, baseOptions);
+      }
+export function usePageFieldsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PageFieldsQuery, PageFieldsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<PageFieldsQuery, PageFieldsQueryVariables>(PageFieldsDocument, baseOptions);
+        }
+export type PageFieldsQueryHookResult = ReturnType<typeof usePageFieldsQuery>;
+export type PageFieldsLazyQueryHookResult = ReturnType<typeof usePageFieldsLazyQuery>;
+export type PageFieldsQueryResult = ApolloReactCommon.QueryResult<PageFieldsQuery, PageFieldsQueryVariables>;
+export const PageNameByIdDocument = gql`
+    query pageNameById($pageId: ID!) {
+  singlePage(pageId: $pageId) {
+    title
+  }
+}
+    `;
+export type PageNameByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PageNameByIdQuery, PageNameByIdQueryVariables>, 'query'> & ({ variables: PageNameByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const PageNameByIdComponent = (props: PageNameByIdComponentProps) => (
+      <ApolloReactComponents.Query<PageNameByIdQuery, PageNameByIdQueryVariables> query={PageNameByIdDocument} {...props} />
+    );
+    
+export type PageNameByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<PageNameByIdQuery, PageNameByIdQueryVariables> & TChildProps;
+export function withPageNameById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  PageNameByIdQuery,
+  PageNameByIdQueryVariables,
+  PageNameByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, PageNameByIdQuery, PageNameByIdQueryVariables, PageNameByIdProps<TChildProps>>(PageNameByIdDocument, {
+      alias: 'pageNameById',
+      ...operationOptions
+    });
+};
+
+/**
+ * __usePageNameByIdQuery__
+ *
+ * To run a query within a React component, call `usePageNameByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageNameByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageNameByIdQuery({
+ *   variables: {
+ *      pageId: // value for 'pageId'
+ *   },
+ * });
+ */
+export function usePageNameByIdQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PageNameByIdQuery, PageNameByIdQueryVariables>) {
+        return ApolloReactHooks.useQuery<PageNameByIdQuery, PageNameByIdQueryVariables>(PageNameByIdDocument, baseOptions);
+      }
+export function usePageNameByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PageNameByIdQuery, PageNameByIdQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<PageNameByIdQuery, PageNameByIdQueryVariables>(PageNameByIdDocument, baseOptions);
+        }
+export type PageNameByIdQueryHookResult = ReturnType<typeof usePageNameByIdQuery>;
+export type PageNameByIdLazyQueryHookResult = ReturnType<typeof usePageNameByIdLazyQuery>;
+export type PageNameByIdQueryResult = ApolloReactCommon.QueryResult<PageNameByIdQuery, PageNameByIdQueryVariables>;
