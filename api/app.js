@@ -36,7 +36,7 @@ mongoose
     console.error('🗄 Error connect to mongoDB', err)
   })
 
-// // APP 📱
+// // APP
 // To create certificate :
 // https://flaviocopes.com/express-https-self-signed-certificate/
 https.createServer({
