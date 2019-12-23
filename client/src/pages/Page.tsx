@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Suspense } from 'react'
-import { useFieldListQuery, Field, usePageFieldsQuery } from 'graphql/components'
+import { Field, usePageFieldsQuery } from 'graphql/components'
 import Table, { Row } from 'components/Table'
 import { defaultTo, uniq, flatten, initial, pipe } from 'lodash/fp'
 import { useLocation } from 'react-router-dom'
