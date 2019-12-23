@@ -7,6 +7,7 @@ import Header from 'components/Header/Header';
 import styled from 'styled-components';
 import { marginApp } from 'styles/layout';
 import NewPage from 'pages/NewPage';
+import NewField from 'pages/NewField';
 
 const Router: FunctionComponent = () => {
 
@@ -25,6 +26,7 @@ const Router: FunctionComponent = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/myPages" component={MyPages} />
           <Route exact path="/pages/:pageSlug" component={Page} />
+          <Route exact path="/pages/:pageSlug/newField" component={NewField} />
           <Route exact path="/newPage" component={NewPage} />
         </RouterInner>
       </Switch>

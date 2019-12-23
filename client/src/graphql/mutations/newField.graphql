@@ -1,0 +1,11 @@
+mutation createNewField($type: fieldType!, $order: Int!, $value: String!, $linkedPageId: ID!){
+  createField(fieldInput:{
+    type:$type,
+    order:$order,
+   	value:$value,
+    linkedPageId:$linkedPageId
+  }){
+    _id
+    value
+  }
+}

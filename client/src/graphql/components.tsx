@@ -81,6 +81,22 @@ export type UserInput = {
   readonly name: Scalars['String'],
 };
 
+export type CreateNewFieldMutationVariables = {
+  type: FieldType,
+  order: Scalars['Int'],
+  value: Scalars['String'],
+  linkedPageId: Scalars['ID']
+};
+
+
+export type CreateNewFieldMutation = (
+  { readonly __typename?: 'RootMutation' }
+  & { readonly createField: Maybe<(
+    { readonly __typename?: 'Field' }
+    & Pick<Field, '_id' | 'value'>
+  )> }
+);
+
 export type CreateNewPageMutationVariables = {
   title: Scalars['String']
 };
@@ -146,6 +162,59 @@ export type PageNameByIdQuery = (
 );
 
 
+export const CreateNewFieldDocument = gql`
+    mutation createNewField($type: fieldType!, $order: Int!, $value: String!, $linkedPageId: ID!) {
+  createField(fieldInput: {type: $type, order: $order, value: $value, linkedPageId: $linkedPageId}) {
+    _id
+    value
+  }
+}
+    `;
+export type CreateNewFieldMutationFn = ApolloReactCommon.MutationFunction<CreateNewFieldMutation, CreateNewFieldMutationVariables>;
+export type CreateNewFieldComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateNewFieldMutation, CreateNewFieldMutationVariables>, 'mutation'>;
+
+    export const CreateNewFieldComponent = (props: CreateNewFieldComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateNewFieldMutation, CreateNewFieldMutationVariables> mutation={CreateNewFieldDocument} {...props} />
+    );
+    
+export type CreateNewFieldProps<TChildProps = {}> = ApolloReactHoc.MutateProps<CreateNewFieldMutation, CreateNewFieldMutationVariables> & TChildProps;
+export function withCreateNewField<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateNewFieldMutation,
+  CreateNewFieldMutationVariables,
+  CreateNewFieldProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateNewFieldMutation, CreateNewFieldMutationVariables, CreateNewFieldProps<TChildProps>>(CreateNewFieldDocument, {
+      alias: 'createNewField',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateNewFieldMutation__
+ *
+ * To run a mutation, you first call `useCreateNewFieldMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewFieldMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNewFieldMutation, { data, loading, error }] = useCreateNewFieldMutation({
+ *   variables: {
+ *      type: // value for 'type'
+ *      order: // value for 'order'
+ *      value: // value for 'value'
+ *      linkedPageId: // value for 'linkedPageId'
+ *   },
+ * });
+ */
+export function useCreateNewFieldMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateNewFieldMutation, CreateNewFieldMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateNewFieldMutation, CreateNewFieldMutationVariables>(CreateNewFieldDocument, baseOptions);
+      }
+export type CreateNewFieldMutationHookResult = ReturnType<typeof useCreateNewFieldMutation>;
+export type CreateNewFieldMutationResult = ApolloReactCommon.MutationResult<CreateNewFieldMutation>;
+export type CreateNewFieldMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNewFieldMutation, CreateNewFieldMutationVariables>;
 export const CreateNewPageDocument = gql`
     mutation createNewPage($title: String!) {
   createPage(pageInput: {title: $title}) {
