@@ -61,6 +61,7 @@
     }
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@graphql-codegen/add": "^1.6.1",
     "@graphql-codegen/cli": "^1.6.1",
     "@graphql-codegen/fragment-matcher": "^1.6.1",
