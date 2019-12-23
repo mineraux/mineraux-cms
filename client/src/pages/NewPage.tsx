@@ -9,14 +9,18 @@ const NewPage: FunctionComponent = () => {
 
   return (
     <>
-      <h2>New Page</h2>
-      <form action="" onSubmit={async (e) => {
+      <h2 className='page-title'>New page</h2>
+      <form className="mineraux-form" action="" onSubmit={async (e) => {
         e.preventDefault()
         await createPage({variables:{title}})
         history.push('./myPages')
       }}>
-        <input type="text" onChange={e => setTitle(e.target.value)} />
-        <button type="submit">Add new page</button>
+        <div className="input-wrapper">
+          <span>Page title</span>
+          <input type="text" onChange={e => setTitle(e.target.value)} />
+        </div>
+        <hr />
+        <button className="button "type="submit">Add new page</button>
       </form>
     </>
   )

@@ -41,7 +41,7 @@ const Page: FunctionComponent = () => {
 
   return (
     <>
-      <h2>Page</h2>
+      <h2 className='page-title'>Page</h2>
       <Link to={
         {
           pathname:`${pathname}/newField`,

@@ -17,31 +17,28 @@ const NewField: FunctionComponent = () => {
 
   return (
     <>
-      <h2>New field</h2>
-
-      <form action="" onSubmit={async (e) => {
+      <h2  className='page-title'>New field</h2>
+      <form className="mineraux-form" action="" onSubmit={async (e) => {
         e.preventDefault()
         await createField({variables:field})
       }}>
-        <span>Field type</span>
-        <input list="fieldTypes" placeholder="Select a field type" onChange={ e => {
-          setField({...field, type:e.target.value as FieldType})
-        }}/>
-        <datalist id="fieldTypes">
-          {generateFieldTypeDom()}
-        </datalist>
+        <div className="input-wrapper">
+          <span>Field type</span>
+          <input list="fieldTypes" placeholder="Select a field type" onChange={ e => {setField({...field, type:e.target.value as FieldType})}}/>
+          <datalist id="fieldTypes">{generateFieldTypeDom()}</datalist>
+        </div>
 
-        <span>Value</span>
-        <input placeholder="Please set a value" onChange={ e => {
-          setField({...field, value:e.target.value})
-        }} />
+        <div className="input-wrapper">
+          <span>Value</span>
+          <input placeholder="Please set a value" onChange={ e => { setField({...field, value:e.target.value})}} />
+        </div>
 
-        <span>Order</span>
-        <input placeholder="Please set an order" onChange={ e => {
-          setField({...field, order:parseInt(e.target.value)})
-        }} />
-
-        <button type="submit">Create field</button>
+        <div className="input-wrapper">
+          <span>Order</span>
+          <input placeholder="Please set an order" onChange={ e => {setField({...field, order:parseInt(e.target.value)})}} />
+        </div>
+        <hr />
+        <button type="submit" className="button">Create field</button>
       </form>
     </>
   )
