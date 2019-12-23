@@ -1,7 +1,7 @@
 /* eslint-disable */
 import gql from 'graphql-tag';
-import * as React from 'react';
 import * as ApolloReactCommon from '@apollo/react-common';
+import * as React from 'react';
 import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 import * as ApolloReactHooks from '@apollo/react-hooks';
@@ -81,6 +81,19 @@ export type UserInput = {
   readonly name: Scalars['String'],
 };
 
+export type CreateNewPageMutationVariables = {
+  title: Scalars['String']
+};
+
+
+export type CreateNewPageMutation = (
+  { readonly __typename?: 'RootMutation' }
+  & { readonly createPage: Maybe<(
+    { readonly __typename?: 'Page' }
+    & Pick<Page, 'title'>
+  )> }
+);
+
 export type FieldListQueryVariables = {};
 
 
@@ -133,6 +146,55 @@ export type PageNameByIdQuery = (
 );
 
 
+export const CreateNewPageDocument = gql`
+    mutation createNewPage($title: String!) {
+  createPage(pageInput: {title: $title}) {
+    title
+  }
+}
+    `;
+export type CreateNewPageMutationFn = ApolloReactCommon.MutationFunction<CreateNewPageMutation, CreateNewPageMutationVariables>;
+export type CreateNewPageComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateNewPageMutation, CreateNewPageMutationVariables>, 'mutation'>;
+
+    export const CreateNewPageComponent = (props: CreateNewPageComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateNewPageMutation, CreateNewPageMutationVariables> mutation={CreateNewPageDocument} {...props} />
+    );
+    
+export type CreateNewPageProps<TChildProps = {}> = ApolloReactHoc.MutateProps<CreateNewPageMutation, CreateNewPageMutationVariables> & TChildProps;
+export function withCreateNewPage<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateNewPageMutation,
+  CreateNewPageMutationVariables,
+  CreateNewPageProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateNewPageMutation, CreateNewPageMutationVariables, CreateNewPageProps<TChildProps>>(CreateNewPageDocument, {
+      alias: 'createNewPage',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateNewPageMutation__
+ *
+ * To run a mutation, you first call `useCreateNewPageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewPageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNewPageMutation, { data, loading, error }] = useCreateNewPageMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *   },
+ * });
+ */
+export function useCreateNewPageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateNewPageMutation, CreateNewPageMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateNewPageMutation, CreateNewPageMutationVariables>(CreateNewPageDocument, baseOptions);
+      }
+export type CreateNewPageMutationHookResult = ReturnType<typeof useCreateNewPageMutation>;
+export type CreateNewPageMutationResult = ApolloReactCommon.MutationResult<CreateNewPageMutation>;
+export type CreateNewPageMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNewPageMutation, CreateNewPageMutationVariables>;
 export const FieldListDocument = gql`
     query FieldList {
   fields {

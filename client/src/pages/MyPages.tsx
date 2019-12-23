@@ -1,7 +1,6 @@
 import React, { FunctionComponent, Suspense } from 'react'
-import Button from 'components/Button'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import Table, { Row } from 'components/Table'
 import { usePagesNameQuery, Page } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
@@ -50,7 +49,7 @@ const MyPages: FunctionComponent = () => {
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Button/>
+      <Link to="/newPage">Add new</Link>
       <Suspense fallback={<div>Your pages are loading...</div>}>
         <TablePages />
       </Suspense>

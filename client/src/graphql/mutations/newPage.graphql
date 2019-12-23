@@ -1,0 +1,5 @@
+mutation createNewPage($title: String!){
+  createPage(pageInput:{title: $title}) {
+    title
+  }
+}
