@@ -20,6 +20,7 @@ export default createGlobalStyle`
     line-height: 24px;
     border-radius: 5px;
     padding: 6px 15px;
+    display: inline-block;
 
     &:hover {
       cursor: pointer;

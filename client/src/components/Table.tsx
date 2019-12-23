@@ -9,11 +9,24 @@ const TableInner = styled.div `
   .table-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 10px 15px;
+    padding: 22px 25px;
     border-radius: 5px;
+    position: relative;
+    transition: background-color ease .2s;
 
-    &:nth-of-type(2n) {
-      background-color: ${lightPink};
+    &:hover:not(.table-header) {
+      cursor: pointer;
+      background-color: rgba(249, 247, 255, .6);
+    }
+
+    &::before {
+      position: absolute;
+      content:'';
+      background-color: #BAC1BE;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      bottom: 0px;
     }
 
     .table-cell {

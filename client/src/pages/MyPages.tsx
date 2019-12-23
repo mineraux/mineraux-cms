@@ -49,7 +49,7 @@ const MyPages: FunctionComponent = () => {
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Link to="/newPage">Add new</Link>
+      <Link to="/newPage" className="button">Add new</Link>
       <Suspense fallback={<div>Your pages are loading...</div>}>
         <TablePages />
       </Suspense>
