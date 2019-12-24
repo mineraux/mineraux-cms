@@ -29,7 +29,7 @@ export type ButtonProps = {
   label: string
   type?: ButtonType
   onClick?: () => void
-  to?: string
+  to?: string | {}
 }
 
 const Button: FunctionComponent<ButtonProps> = ({type = 'default', label, onClick, to}) => {

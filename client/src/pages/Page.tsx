@@ -3,6 +3,7 @@ import { Field, usePageFieldsQuery } from 'graphql/components'
 import Table, { Row } from 'components/Table'
 import { defaultTo, uniq, flatten, initial, pipe } from 'lodash/fp'
 import { useLocation, Link } from 'react-router-dom'
+import Button, { ButtonType } from 'components/Button'
 
 const TableFields: FunctionComponent = () => {
   const locationState = useLocation().state
@@ -38,16 +39,12 @@ const TableFields: FunctionComponent = () => {
 const Page: FunctionComponent = () => {
   const pathname = useLocation().pathname
   const locationState = useLocation().state
+  const { LINK } = ButtonType
 
   return (
     <>
       <h2 className='page-title'>Page</h2>
-      <Link to={
-        {
-          pathname:`${pathname}/newField`,
-          state:{id:locationState.id}
-        }
-      }>Add new</Link>
+      <Button label="Add new field" type={LINK} to={{ pathname:`${pathname}/newField`, state:{id:locationState.id} }} />
       <Suspense fallback={<div>Your fields are loading...</div>}>
         <TableFields />
       </Suspense>
