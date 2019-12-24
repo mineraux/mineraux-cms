@@ -4,6 +4,7 @@ import Table, { Row } from 'components/Table'
 import { defaultTo, uniq, flatten, initial, pipe } from 'lodash/fp'
 import { useLocation, Link } from 'react-router-dom'
 import Button, { ButtonType } from 'components/Button'
+import { ReadOnlyFieldPick } from 'interface/Field'
 
 const TableFields: FunctionComponent = () => {
   const locationState = useLocation().state
@@ -17,7 +18,7 @@ const TableFields: FunctionComponent = () => {
 
     const tableHeaderData: Row = {
       labels: pipe(
-        (pageList: ReadonlyArray<Pick<Field, '_id' | 'type' | 'order' | 'value'>>) => pageList.map(page => Object.keys(page)),
+        (pageList: ReadOnlyFieldPick) => pageList.map(page => Object.keys(page)),
         flatten,
         uniq,
         initial

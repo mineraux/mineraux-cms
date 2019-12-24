@@ -5,7 +5,7 @@ import Table, { Row } from 'components/Table'
 import { usePagesNameQuery, Page } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
 import Button, { ButtonType } from 'components/Button'
-
+import { PagePick, ReadOnlyPagePick } from 'interface/Page'
 
 
 const TablePages: FunctionComponent = () => {
@@ -16,8 +16,8 @@ const TablePages: FunctionComponent = () => {
     return <div>Something went wrong loading your fields.</div>
   }
 
-  const onClickRow = (page:Pick<Page, "title" | "_id">):void => {
-    history.push(`/pages/${page.title}`, {id:page._id})
+  const onClickRow = (page:PagePick):void => {
+    history.push(`/pages/${page}`, {id:page._id})
   }
 
   if (data) {
@@ -30,7 +30,7 @@ const TablePages: FunctionComponent = () => {
 
     const tableHeaderData: Row = {
       labels: pipe(
-          (pageList: ReadonlyArray<Pick<Page, 'title' | '_id'>>) => pageList.map(page => Object.keys(page)),
+          (pageList: ReadOnlyPagePick) => pageList.map(page => Object.keys(page)),
           flatten,
           uniq,
           initial
