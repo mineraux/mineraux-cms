@@ -1,30 +1,21 @@
 import './reset.css'
 import { createGlobalStyle } from "styled-components"
-import { black, white, green } from './color'
+import { black, white, purple, lightGrey } from './color'
+import { groteskMedium } from './fonts'
 
 export default createGlobalStyle`
-  body, a {
+  body {
     color: ${black};
-    font-family:'Roboto', sans-serif;
+    font-family: ${groteskMedium}
+  }
+
+  a {
+    color: ${black};
   }
 
   .page-title {
     font-size: 36px;
     margin-bottom: 80px;
-  }
-
-  .button {
-    background: ${green};
-    color: ${white};
-    font-size: 18px;
-    line-height: 24px;
-    border-radius: 5px;
-    padding: 6px 15px;
-    display: inline-block;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   .mineraux-form {
@@ -39,15 +30,27 @@ export default createGlobalStyle`
       span {
         max-width: 500px;
         margin-bottom: 5px;
-        font-size: 15px;
+        font-size: 16px;
       }
 
       input {
+        appearance: none;
+        outline: none;
+        padding: 15px 12px;
         margin-bottom: 15px;
-        border-radius: 8px;
-        box-shadow: none;
-        padding: 10px 15px;
-        border: 1px solid #D8DDE2;
+        font-size: 16px;
+        line-height: 19px;
+        border-radius: 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: ${lightGrey};
+        background-color: ${white};
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          border-color: ${purple};
+        }
+
       }
     }
 

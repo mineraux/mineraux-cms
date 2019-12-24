@@ -1,0 +1,30 @@
+@font-face {
+  font-family: darker_grotesque-light;
+  src: url('./darker_grotesque/darker_grotesque-light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: darker_grotesque-regular;
+  src: url('./darker_grotesque/darker_grotesque-regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: darker_grotesque-medium;
+  src: url('./darker_grotesque/darker_grotesque-medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: darker_grotesque-semi_bold;
+  src: url('./darker_grotesque/darker_grotesque-semi_bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: darker_grotesque-bold;
+  src: url('./darker_grotesque/darker_grotesque-bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: bold;
+}

@@ -1,11 +1,14 @@
 import React, { FunctionComponent, useState } from 'react'
 import { useCreateNewPageMutation } from 'graphql/components'
 import { useHistory } from 'react-router-dom'
+import Button, { ButtonType } from 'components/Button'
 
 const NewPage: FunctionComponent = () => {
   const [title, setTitle] = useState('')
   const [createPage] = useCreateNewPageMutation()
   const history = useHistory()
+
+  const { SUBMIT } = ButtonType
 
   return (
     <>
@@ -17,10 +20,10 @@ const NewPage: FunctionComponent = () => {
       }}>
         <div className="input-wrapper">
           <span>Page title</span>
-          <input type="text" onChange={e => setTitle(e.target.value)} />
+          <input type="text" onChange={e => setTitle(e.target.value)} placeholder="Enter the page title"/>
         </div>
         <hr />
-        <button className="button "type="submit">Add new page</button>
+        <Button type={SUBMIT} label="Add new page"/>
       </form>
     </>
   )

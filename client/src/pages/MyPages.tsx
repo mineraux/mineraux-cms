@@ -1,9 +1,10 @@
 import React, { FunctionComponent, Suspense } from 'react'
 import styled from 'styled-components'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Table, { Row } from 'components/Table'
 import { usePagesNameQuery, Page } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
+import Button, { ButtonType } from 'components/Button'
 
 const TablePages: FunctionComponent = () => {
   const { data, error } = usePagesNameQuery()
@@ -46,10 +47,13 @@ const MyPages: FunctionComponent = () => {
     }
   `
 
+  const { LINK } = ButtonType
+
   return (
     <InnerMyPages>
       <h2 className='page-title'>My Pages</h2>
-      <Link to="/newPage" className="button">Add new</Link>
+      <Button type={LINK} to="/newPage" label="Add new page"/>
+      {/* <Link to="/newPage" className="button">Add new</Link> */}
       <Suspense fallback={<div>Your pages are loading...</div>}>
         <TablePages />
       </Suspense>

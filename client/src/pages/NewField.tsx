@@ -1,10 +1,13 @@
 import React, { FunctionComponent, useState } from 'react'
 import { useCreateNewFieldMutation, FieldType, CreateNewFieldMutationVariables } from 'graphql/components'
 import { useLocation } from 'react-router-dom'
+import Button, { ButtonType } from 'components/Button'
 
 const generateFieldTypeDom = (): JSX.Element[] => Object.values(FieldType).map((value, index) => <option key={index}>{value}</option>)
 
 const NewField: FunctionComponent = () => {
+  const { SUBMIT } = ButtonType
+
   const locationState = useLocation().state
 
   const [field, setField] = useState<CreateNewFieldMutationVariables>({
@@ -38,7 +41,7 @@ const NewField: FunctionComponent = () => {
           <input placeholder="Please set an order" onChange={ e => {setField({...field, order:parseInt(e.target.value)})}} />
         </div>
         <hr />
-        <button type="submit" className="button">Create field</button>
+        <Button type={SUBMIT} label="Create field"/>
       </form>
     </>
   )

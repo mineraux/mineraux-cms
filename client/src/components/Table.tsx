@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-import { white, lightPink } from 'styles/color'
+import { white } from 'styles/color'
 
 const TableInner = styled.div `
   padding: 15px 25px;

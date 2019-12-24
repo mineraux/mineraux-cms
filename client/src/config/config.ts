@@ -24,7 +24,7 @@ const config: configInterface = {
     },
     MyPages: {
       path: '/MyPages',
-      name: 'MyPages',
+      name: 'My pages',
       component: MyPages,
     },
   },

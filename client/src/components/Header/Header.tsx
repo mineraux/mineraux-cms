@@ -2,13 +2,15 @@ import React, { FunctionComponent, Fragment } from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
 import config from '../../config/config'
-import { green, white } from 'styles/color'
+import { white, purple } from 'styles/color'
 import profilPicture from '../../assets/images/profil_picture.jpg'
+import { groteskSemiBold } from 'styles/fonts'
 
 const HeaderInner = styled.header`
   padding: 15px 30px ;
   box-shadow: 0 5px 15px 0 rgba(90,50,40,.15), 0 4px 8px 0 rgba(80,40,30,.1);
   background-color: ${white};
+  font-family: ${groteskSemiBold};
 
   .header-wrapper {
     max-width: 840px;
@@ -22,8 +24,6 @@ const HeaderInner = styled.header`
       display: flex;
 
       a {
-        font-size: 14px;
-        font-weight: 500;
         position: relative;
 
         &:before {
@@ -31,7 +31,7 @@ const HeaderInner = styled.header`
             left: 0;
             bottom: -3px;
             content: '';
-            background-color: ${green};
+            background-color: ${purple};
             width : 100%;
             height: 1px;
             transform: scaleX(0);
