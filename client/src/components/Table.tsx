@@ -39,7 +39,7 @@ const TableInner = styled.div `
 
 export type Row = {
   labels: string[]
-  onClick?: () => void
+  onClick?: <T>(args?:T) => void
 }
 
 export type TableProps = {

@@ -6,6 +6,8 @@ import { usePagesNameQuery, Page } from 'graphql/components'
 import { uniq, flatten, initial, pipe } from 'lodash/fp'
 import Button, { ButtonType } from 'components/Button'
 
+
+
 const TablePages: FunctionComponent = () => {
   const { data, error } = usePagesNameQuery()
   const history = useHistory()
@@ -14,10 +16,14 @@ const TablePages: FunctionComponent = () => {
     return <div>Something went wrong loading your fields.</div>
   }
 
+  const onClickRow = (page:Pick<Page, "title" | "_id">):void => {
+    history.push(`/pages/${page.title}`, {id:page._id})
+  }
+
   if (data) {
     const tableBodyData: Row[] = data.pages.map(page => {
       return {
-        onClick: () => history.push(`/pages/${page.title}`, {id:page._id}),
+        onClick: () => onClickRow(page),
         labels: initial(Object.values(page) as string[])
       }
     })
